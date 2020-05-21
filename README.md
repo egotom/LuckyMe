@@ -16,7 +16,7 @@ git clone https://github.com/egotom/LuckyMe.git
 Install the dependencies...
 
 ```bash
-cd luckMe
+cd LuckyMe
 npm install
 ```
 

@@ -1,13 +1,13 @@
 <script>
-	export let lk=[], lb="A", addOne;
+	export let lk=[], lb="A", miss=true, addOne;
 </script>
 <main>
 	<div class="solt">
 		<div class="label" on:click={()=>addOne(lk)}>{lb}</div>
 	</div>
 	{#each lk as nb}
-		<div class="solt">
-			<div class="fancy">{nb}</div>
+		<div class="solt" >
+			<div class="fancy" class:fld={miss}>{nb}</div>
 		</div>
 	{/each}
 </main>
@@ -15,7 +15,7 @@
 .solt{
 	display: inline-block;
 }
-.fancy,.label {
+.fancy, .label {
     width: 130px;
     line-height: 130px;
     text-align: center;
@@ -36,5 +36,8 @@
 .label:hover{
     background-color: #4449FF;
     cursor:pointer
+}
+.fld{
+	background-color: #00A900;
 }
 </style>
