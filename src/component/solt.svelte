@@ -1,9 +1,9 @@
 <script>
-	export let lk=[], lb="A";
+	export let lk=[], lb="A", addOne;
 </script>
 <main>
 	<div class="solt">
-			<div class="label">{lb}</div>
+		<div class="label" on:click={()=>addOne(lk)}>{lb}</div>
 	</div>
 	{#each lk as nb}
 		<div class="solt">
@@ -15,7 +15,7 @@
 .solt{
 	display: inline-block;
 }
-.fancy {
+.fancy,.label {
     width: 130px;
     line-height: 130px;
     text-align: center;
@@ -25,23 +25,16 @@
     text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
     font-family: 'Gravitas One', serif;
     border-left: 1px solid #999;
+    border-radius: 6px;
     display: inline-block;
     margin: 6px;
     background-color: #FF2229;
 }
 .label {
-    width: 130px;
-    line-height: 130px;
-    text-align: center;
-    font-size: 130px;
-    font-weight: bold;
-    color: #fff;
-    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
-    font-family: 'Gravitas One', serif;
-    border-left: 1px solid #999;
-    display: inline-block;
-    margin: 6px;
-    background-color: #2229FF;
+    background-color: #0009FF;
 }
-
+.label:hover{
+    background-color: #4449FF;
+    cursor:pointer
+}
 </style>

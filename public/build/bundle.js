@@ -383,7 +383,7 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[2] = list[i];
+    	child_ctx[4] = list[i];
     	return child_ctx;
     }
 
@@ -391,7 +391,7 @@ var app = (function () {
     function create_each_block(ctx) {
     	let div1;
     	let div0;
-    	let t0_value = /*nb*/ ctx[2] + "";
+    	let t0_value = /*nb*/ ctx[4] + "";
     	let t0;
     	let t1;
 
@@ -401,10 +401,10 @@ var app = (function () {
     			div0 = element("div");
     			t0 = text(t0_value);
     			t1 = space();
-    			attr_dev(div0, "class", "fancy svelte-mltsie");
-    			add_location(div0, file, 9, 3, 165);
-    			attr_dev(div1, "class", "solt svelte-mltsie");
-    			add_location(div1, file, 8, 2, 142);
+    			attr_dev(div0, "class", "fancy svelte-1u3r5jo");
+    			add_location(div0, file, 9, 3, 198);
+    			attr_dev(div1, "class", "solt svelte-1u3r5jo");
+    			add_location(div1, file, 8, 2, 175);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div1, anchor);
@@ -413,7 +413,7 @@ var app = (function () {
     			append_dev(div1, t1);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*lk*/ 1 && t0_value !== (t0_value = /*nb*/ ctx[2] + "")) set_data_dev(t0, t0_value);
+    			if (dirty & /*lk*/ 1 && t0_value !== (t0_value = /*nb*/ ctx[4] + "")) set_data_dev(t0, t0_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div1);
@@ -437,6 +437,7 @@ var app = (function () {
     	let div0;
     	let t0;
     	let t1;
+    	let dispose;
     	let each_value = /*lk*/ ctx[0];
     	validate_each_argument(each_value);
     	let each_blocks = [];
@@ -457,16 +458,16 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(div0, "class", "label svelte-mltsie");
-    			add_location(div0, file, 5, 3, 81);
-    			attr_dev(div1, "class", "solt svelte-mltsie");
-    			add_location(div1, file, 4, 1, 58);
-    			add_location(main, file, 3, 0, 49);
+    			attr_dev(div0, "class", "label svelte-1u3r5jo");
+    			add_location(div0, file, 5, 2, 88);
+    			attr_dev(div1, "class", "solt svelte-1u3r5jo");
+    			add_location(div1, file, 4, 1, 66);
+    			add_location(main, file, 3, 0, 57);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
-    		m: function mount(target, anchor) {
+    		m: function mount(target, anchor, remount) {
     			insert_dev(target, main, anchor);
     			append_dev(main, div1);
     			append_dev(div1, div0);
@@ -476,6 +477,9 @@ var app = (function () {
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].m(main, null);
     			}
+
+    			if (remount) dispose();
+    			dispose = listen_dev(div0, "click", /*click_handler*/ ctx[3], false, false, false);
     		},
     		p: function update(ctx, [dirty]) {
     			if (dirty & /*lb*/ 2) set_data_dev(t0, /*lb*/ ctx[1]);
@@ -509,6 +513,7 @@ var app = (function () {
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(main);
     			destroy_each(each_blocks, detaching);
+    			dispose();
     		}
     	};
 
@@ -524,8 +529,8 @@ var app = (function () {
     }
 
     function instance($$self, $$props, $$invalidate) {
-    	let { lk = [] } = $$props, { lb = "A" } = $$props;
-    	const writable_props = ["lk", "lb"];
+    	let { lk = [] } = $$props, { lb = "A" } = $$props, { addOne } = $$props;
+    	const writable_props = ["lk", "lb", "addOne"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Solt> was created with unknown prop '${key}'`);
@@ -533,30 +538,33 @@ var app = (function () {
 
     	let { $$slots = {}, $$scope } = $$props;
     	validate_slots("Solt", $$slots, []);
+    	const click_handler = () => addOne(lk);
 
     	$$self.$set = $$props => {
     		if ("lk" in $$props) $$invalidate(0, lk = $$props.lk);
     		if ("lb" in $$props) $$invalidate(1, lb = $$props.lb);
+    		if ("addOne" in $$props) $$invalidate(2, addOne = $$props.addOne);
     	};
 
-    	$$self.$capture_state = () => ({ lk, lb });
+    	$$self.$capture_state = () => ({ lk, lb, addOne });
 
     	$$self.$inject_state = $$props => {
     		if ("lk" in $$props) $$invalidate(0, lk = $$props.lk);
     		if ("lb" in $$props) $$invalidate(1, lb = $$props.lb);
+    		if ("addOne" in $$props) $$invalidate(2, addOne = $$props.addOne);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [lk, lb];
+    	return [lk, lb, addOne, click_handler];
     }
 
     class Solt extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance, create_fragment, safe_not_equal, { lk: 0, lb: 1 });
+    		init(this, options, instance, create_fragment, safe_not_equal, { lk: 0, lb: 1, addOne: 2 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -564,6 +572,13 @@ var app = (function () {
     			options,
     			id: create_fragment.name
     		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*addOne*/ ctx[2] === undefined && !("addOne" in props)) {
+    			console.warn("<Solt> was created without expected prop 'addOne'");
+    		}
     	}
 
     	get lk() {
@@ -581,6 +596,14 @@ var app = (function () {
     	set lb(value) {
     		throw new Error("<Solt>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
+
+    	get addOne() {
+    		throw new Error("<Solt>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set addOne(value) {
+    		throw new Error("<Solt>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
     }
 
     /* src\App.svelte generated by Svelte v3.22.3 */
@@ -588,39 +611,59 @@ var app = (function () {
 
     function get_each_context$1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[9] = list[i];
+    	child_ctx[11] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[12] = list[i];
+    	child_ctx[14] = list[i];
     	return child_ctx;
     }
 
-    // (56:3) {#each luckMe as lm}
+    // (66:3) {#each luckMe as lm}
     function create_each_block_1(ctx) {
     	let li;
     	let a;
-    	let t_value = /*lm*/ ctx[12] + "";
-    	let t;
+    	let t0_value = /*lm*/ ctx[14] + "";
+    	let t0;
+    	let t1;
+    	let span;
+    	let img;
+    	let img_src_value;
+    	let t2;
 
     	const block = {
     		c: function create() {
     			li = element("li");
     			a = element("a");
-    			t = text(t_value);
+    			t0 = text(t0_value);
+    			t1 = space();
+    			span = element("span");
+    			img = element("img");
+    			t2 = space();
     			attr_dev(a, "href", "");
-    			attr_dev(a, "class", "svelte-1econ7z");
-    			add_location(a, file$1, 56, 8, 1113);
-    			add_location(li, file$1, 56, 4, 1109);
+    			attr_dev(a, "class", "svelte-vykjp1");
+    			add_location(a, file$1, 66, 8, 1260);
+    			if (img.src !== (img_src_value = "close.jpeg")) attr_dev(img, "src", img_src_value);
+    			attr_dev(img, "class", "svelte-vykjp1");
+    			add_location(img, file$1, 66, 47, 1299);
+    			attr_dev(span, "class", "btn svelte-vykjp1");
+    			add_location(span, file$1, 66, 28, 1280);
+    			add_location(li, file$1, 66, 4, 1256);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
     			append_dev(li, a);
-    			append_dev(a, t);
+    			append_dev(a, t0);
+    			append_dev(li, t1);
+    			append_dev(li, span);
+    			append_dev(span, img);
+    			append_dev(li, t2);
     		},
-    		p: noop,
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*luckMe*/ 2 && t0_value !== (t0_value = /*lm*/ ctx[14] + "")) set_data_dev(t0, t0_value);
+    		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(li);
     		}
@@ -630,19 +673,23 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(56:3) {#each luckMe as lm}",
+    		source: "(66:3) {#each luckMe as lm}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (66:2) {#each s as lk}
+    // (76:2) {#each s as lk}
     function create_each_block$1(ctx) {
     	let current;
 
     	const solt = new Solt({
-    			props: { lk: /*lk*/ ctx[9], lb: "B" },
+    			props: {
+    				lk: /*lk*/ ctx[11],
+    				lb: /*lb*/ ctx[3],
+    				addOne: /*AddLuck*/ ctx[7]
+    			},
     			$$inline: true
     		});
 
@@ -656,7 +703,7 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			const solt_changes = {};
-    			if (dirty & /*s*/ 1) solt_changes.lk = /*lk*/ ctx[9];
+    			if (dirty & /*s*/ 1) solt_changes.lk = /*lk*/ ctx[11];
     			solt.$set(solt_changes);
     		},
     		i: function intro(local) {
@@ -677,7 +724,7 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(66:2) {#each s as lk}",
+    		source: "(76:2) {#each s as lk}",
     		ctx
     	});
 
@@ -704,7 +751,7 @@ var app = (function () {
     	let div2;
     	let current;
     	let dispose;
-    	let each_value_1 = /*luckMe*/ ctx[2];
+    	let each_value_1 = /*luckMe*/ ctx[1];
     	validate_each_argument(each_value_1);
     	let each_blocks_1 = [];
 
@@ -749,7 +796,7 @@ var app = (function () {
     			t7 = space();
     			div0 = element("div");
     			a = element("a");
-    			a.textContent = "开放源代码:github.com/egotom/luckMe";
+    			a.textContent = "开放源代码: github.com/egotom/LuckyMe";
     			t9 = space();
     			div2 = element("div");
 
@@ -757,26 +804,27 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(span, "class", "label svelte-1econ7z");
-    			add_location(span, file$1, 50, 2, 869);
+    			attr_dev(span, "class", "label svelte-vykjp1");
+    			add_location(span, file$1, 60, 2, 1016);
     			attr_dev(input, "type", "text");
     			attr_dev(input, "id", "luckMax");
-    			add_location(input, file$1, 50, 34, 901);
-    			add_location(br, file$1, 51, 2, 973);
-    			add_location(button0, file$1, 52, 2, 981);
-    			add_location(button1, file$1, 53, 2, 1021);
-    			attr_dev(ul, "class", "luckMe svelte-1econ7z");
-    			add_location(ul, file$1, 54, 2, 1061);
-    			attr_dev(a, "href", "https://github.com/egotom/luckMe");
-    			add_location(a, file$1, 60, 3, 1181);
-    			attr_dev(div0, "class", "open svelte-1econ7z");
-    			add_location(div0, file$1, 59, 2, 1159);
+    			add_location(input, file$1, 60, 34, 1048);
+    			add_location(br, file$1, 61, 2, 1120);
+    			add_location(button0, file$1, 62, 2, 1128);
+    			add_location(button1, file$1, 63, 2, 1168);
+    			attr_dev(ul, "class", "luckMe svelte-vykjp1");
+    			add_location(ul, file$1, 64, 2, 1208);
+    			attr_dev(a, "href", "https://github.com/egotom/LuckyMe");
+    			attr_dev(a, "target", "_blank");
+    			add_location(a, file$1, 70, 3, 1380);
+    			attr_dev(div0, "class", "open svelte-vykjp1");
+    			add_location(div0, file$1, 69, 2, 1358);
     			attr_dev(div1, "class", "opt");
-    			add_location(div1, file$1, 49, 1, 849);
+    			add_location(div1, file$1, 59, 1, 996);
     			attr_dev(div2, "class", "bod");
-    			add_location(div2, file$1, 64, 1, 1280);
-    			attr_dev(main, "class", "svelte-1econ7z");
-    			add_location(main, file$1, 48, 0, 840);
+    			add_location(div2, file$1, 74, 1, 1498);
+    			attr_dev(main, "class", "svelte-vykjp1");
+    			add_location(main, file$1, 58, 0, 987);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -786,7 +834,7 @@ var app = (function () {
     			append_dev(main, div1);
     			append_dev(div1, span);
     			append_dev(div1, input);
-    			set_input_value(input, /*luckMax*/ ctx[1]);
+    			set_input_value(input, /*luckMax*/ ctx[2]);
     			append_dev(div1, t1);
     			append_dev(div1, br);
     			append_dev(div1, t2);
@@ -814,19 +862,19 @@ var app = (function () {
     			if (remount) run_all(dispose);
 
     			dispose = [
-    				listen_dev(input, "keyup", /*Init*/ ctx[3], false, false, false),
-    				listen_dev(input, "input", /*input_input_handler*/ ctx[8]),
-    				listen_dev(button0, "click", /*Start*/ ctx[5], false, false, false),
-    				listen_dev(button1, "click", /*Pause*/ ctx[4], false, false, false)
+    				listen_dev(input, "keyup", /*Init*/ ctx[4], false, false, false),
+    				listen_dev(input, "input", /*input_input_handler*/ ctx[10]),
+    				listen_dev(button0, "click", /*Start*/ ctx[6], false, false, false),
+    				listen_dev(button1, "click", /*Pause*/ ctx[5], false, false, false)
     			];
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*luckMax*/ 2 && input.value !== /*luckMax*/ ctx[1]) {
-    				set_input_value(input, /*luckMax*/ ctx[1]);
+    			if (dirty & /*luckMax*/ 4 && input.value !== /*luckMax*/ ctx[2]) {
+    				set_input_value(input, /*luckMax*/ ctx[2]);
     			}
 
-    			if (dirty & /*luckMe*/ 4) {
-    				each_value_1 = /*luckMe*/ ctx[2];
+    			if (dirty & /*luckMe*/ 2) {
+    				each_value_1 = /*luckMe*/ ctx[1];
     				validate_each_argument(each_value_1);
     				let i;
 
@@ -849,7 +897,7 @@ var app = (function () {
     				each_blocks_1.length = each_value_1.length;
     			}
 
-    			if (dirty & /*s*/ 1) {
+    			if (dirty & /*s, lb, AddLuck*/ 137) {
     				each_value = /*s*/ ctx[0];
     				validate_each_argument(each_value);
     				let i;
@@ -915,9 +963,10 @@ var app = (function () {
     }
 
     function instance$1($$self, $$props, $$invalidate) {
-    	let s = [], luckMe = ["A-1258", "A-1258"];
-    	let soltMax = 6;
-    	let luckMax = 1;
+    	let s = [], luckMe = [];
+    	let lb = "B";
+    	let soltMax = 4;
+    	let luckMax = 3;
     	let ts = null;
 
     	function Init() {
@@ -963,6 +1012,18 @@ var app = (function () {
     		}
     	}
 
+    	function AddLuck(lkm) {
+    		//console.log(lkm);
+    		let me = lb + "-";
+
+    		for (let i in lkm) {
+    			me += lkm[i];
+    		}
+
+    		luckMe.push(me);
+    		$$invalidate(1, luckMe);
+    	} //console.log(me);
+
     	onMount(async () => {
     		
     	}); //const res = await fetch(`https://jsonplaceholder.typicode.com/photos?_limit=20`);
@@ -979,7 +1040,7 @@ var app = (function () {
 
     	function input_input_handler() {
     		luckMax = this.value;
-    		$$invalidate(1, luckMax);
+    		$$invalidate(2, luckMax);
     	}
 
     	$$self.$capture_state = () => ({
@@ -987,19 +1048,22 @@ var app = (function () {
     		Solt,
     		s,
     		luckMe,
+    		lb,
     		soltMax,
     		luckMax,
     		ts,
     		Init,
     		Pause,
-    		Start
+    		Start,
+    		AddLuck
     	});
 
     	$$self.$inject_state = $$props => {
     		if ("s" in $$props) $$invalidate(0, s = $$props.s);
-    		if ("luckMe" in $$props) $$invalidate(2, luckMe = $$props.luckMe);
+    		if ("luckMe" in $$props) $$invalidate(1, luckMe = $$props.luckMe);
+    		if ("lb" in $$props) $$invalidate(3, lb = $$props.lb);
     		if ("soltMax" in $$props) soltMax = $$props.soltMax;
-    		if ("luckMax" in $$props) $$invalidate(1, luckMax = $$props.luckMax);
+    		if ("luckMax" in $$props) $$invalidate(2, luckMax = $$props.luckMax);
     		if ("ts" in $$props) ts = $$props.ts;
     	};
 
@@ -1007,7 +1071,19 @@ var app = (function () {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [s, luckMax, luckMe, Init, Pause, Start, ts, soltMax, input_input_handler];
+    	return [
+    		s,
+    		luckMe,
+    		luckMax,
+    		lb,
+    		Init,
+    		Pause,
+    		Start,
+    		AddLuck,
+    		ts,
+    		soltMax,
+    		input_input_handler
+    	];
     }
 
     class App extends SvelteComponentDev {

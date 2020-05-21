@@ -1,9 +1,10 @@
 <script>
 import { onMount } from 'svelte';
 import Solt from './component/solt.svelte';
-let s=[], luckMe=['A-1258','A-1258'];
-let soltMax=6;
-let luckMax=1;
+let s=[], luckMe=[];
+let lb="B";
+let soltMax=4;
+let luckMax=3;
 let ts=null;
 
 function Init(){
@@ -39,7 +40,16 @@ function Start(){
 	    if(idx>soltMax && idy>luckMax) break;
 	}
 }
-
+function AddLuck(lkm){
+	//console.log(lkm);
+	let me=lb+'-';
+	for(let i in lkm){
+		me+=lkm[i];
+	}
+	luckMe.push(me);
+	luckMe=luckMe;
+	//console.log(me);
+}
 onMount(async () => {
 	//const res = await fetch(`https://jsonplaceholder.typicode.com/photos?_limit=20`);
 	//photos = await res.json();
@@ -54,17 +64,17 @@ onMount(async () => {
 		<button on:click={Pause}>停 止</button>
 		<ul class="luckMe">
 			{#each luckMe as lm}
-				<li><a href="">{lm}</a></li>
+				<li><a href="">{lm}</a> <span class="btn" ><img src="close.jpeg" /></span> </li>
 			{/each}
 		</ul>
 		<div class="open">
-			<a href="https://github.com/egotom/luckMe">开放源代码:github.com/egotom/luckMe</a>
+			<a href="https://github.com/egotom/LuckyMe" target="_blank">开放源代码: github.com/egotom/LuckyMe</a>
 		</div>
 		
 	</div>
 	<div class="bod">
 		{#each s as lk}
-			<Solt lk={lk} lb={"B"}/>
+			<Solt lk={lk} lb={lb} addOne={AddLuck}/> 
 		{/each}
 	</div>
 </main>
@@ -84,6 +94,9 @@ onMount(async () => {
 		font-weight: bold;
 		text-decoration: none;
 	}
+	.luckMe li a:hover{
+		text-decoration: underline;
+	}
 	.label{
 		font-size: 20px;
 		font-weight: bold;
@@ -93,5 +106,12 @@ onMount(async () => {
 		height:30px;
     	position:absolute;
     	bottom:10px;
+	}
+	.btn{line-height: 30px;}
+	.btn img{
+		float: right;
+		width: 20px;
+		height: 20px;
+		margin: 37px 10px 15px 0;
 	}
 </style>
