@@ -139,7 +139,7 @@ onMount(async () => {
 				{#if Bingo(lk)}
 					<Solt lk={lk} lb={lb} addOne={AddLuck} miss={false}/> 
 				{:else}
-					<Solt lk={lk} lb={lb} addOne={AddLuck} miss={true}/> 
+					<Solt lk={lk} lb={lb} miss={true}/> 
 				{/if}
 			{/each}
 		</div>

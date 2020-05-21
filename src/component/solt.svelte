@@ -1,5 +1,5 @@
 <script>
-	export let lk=[], lb="A", miss=true, addOne;
+	export let lk=[], lb="A", miss=true, addOne=null;
 </script>
 <main>
 	<div class="solt">
