@@ -1,9 +1,9 @@
 
 ---
 
-# LuckMe App
+# LuckyMe App
 
-积分奖券抽奖程序
+积分奖券抽奖程序 LuckyMe
 
 
 ## Get started
