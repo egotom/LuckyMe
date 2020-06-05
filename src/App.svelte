@@ -2,9 +2,10 @@
 import { onMount } from 'svelte';
 import { writable } from 'svelte/store';
 import Solt from './component/solt.svelte';
-let s=[], luckMe=[], lst, modal=false, me=[];
-let lb="B";
-let soltMax=5;
+let s=[], luckMe=[], lst, me=[],topN=0,code=33333, optCode;
+let  modal=false, confirm=false;
+let lb="B", error="", dell="";
+let soltMax=1;
 let luckMax=5;
 let ts=null;
 const LM = writable(JSON.parse(localStorage.getItem("luckMe"))|| []);
@@ -27,21 +28,20 @@ function Pause(){
 	window.clearTimeout(ts);
 	ts=null;
 }
+
 function Start(){
+	s=[];
 	ts=window.setTimeout(Start,20);
-	let idx=0;
-	let idy=0;
-	while(true){
-	    let number=Math.round(Math.random()*10);
-	    if(number<10){	    	
-	    	s[idy][idx]=number;
-	    	idx++;
-	    	if(idx==soltMax){
-	    		idy++;
-	    		idx=0;
-	    	}
-	    }
-	    if(idx>soltMax && idy>luckMax) break;
+	for(let i=0 ; i<luckMax ;){
+		let n1="";
+		for(let j=0; j<soltMax; j++){
+			let number=Math.floor(Math.random()*10);
+			n1+=number.toString();
+		}
+		if(parseInt(n1)>topN)
+			continue;
+		s.push(n1);
+		i++;
 	}
 }
 function AddLuck(lkm){
@@ -54,10 +54,25 @@ function AddLuck(lkm){
 }
 
 function DelLuck(lkm){
-	luckMe=luckMe.filter((me)=>me!=lkm);
-	LM.subscribe(localStorage.setItem("luckMe",JSON.stringify(luckMe)));
+	code=Math.floor(Math.random()*100000);
+	confirm=true;
+	error="";
+	optCode="";
+	dell=lkm;
+}
+function DelConfirm(){	
+	if(optCode==code){
+		confirm=false;
+		luckMe=luckMe.filter((me)=>me!=dell);
+		LM.subscribe(localStorage.setItem("luckMe",JSON.stringify(luckMe)));
+	}
+	code=Math.floor(Math.random()*100000);
+	error="操作确认码错误，请重新输入。";
 }
 
+function DelCancel(){
+	confirm=false;
+}
 function Bingo(v){
 	let me='';
 	for(let i in v){
@@ -99,7 +114,11 @@ onMount(async () => {
 	lb=lty.cpt;
 	lst=lty.lst;
 	Init();
-	//console.log(lst);
+	
+	lty.lst.map(l=>{
+		if(parseInt(l[0])>topN)
+			topN=parseInt(l[0]);
+	})
 });
 
 </script>
@@ -115,6 +134,20 @@ onMount(async () => {
 					<p class="when">{me[5]}</p>
 				</div>
 			</div>
+			
+		</div>
+	</div>
+	{/if}
+	{#if confirm}
+	<div class="backdrop">
+		<div class="back">
+			<div class="confirm">
+				<h3>请输入操作确认码，完成操作。</h3>
+				<p><b class="code">{code}</b></p>
+				<p style="color:red">{error}</p>
+				<p>输入确认码 : <input type="text" bind:value={optCode} ></p>
+				<p><button on:click={DelConfirm}>确认</button><button on:click={DelCancel}>取消</button></p>	
+			</div>			
 		</div>
 	</div>
 	{/if}
@@ -124,6 +157,7 @@ onMount(async () => {
 			<br/>
 			<button on:click={Start}>开 始</button>
 			<button on:click={Pause}>停 止</button>
+			<p style="color:red"><b>中奖序列号：</b></p>
 			<ul class="luckMe">
 				{#each luckMe as lm}
 					<li><b on:click={()=>doModal(lm)}>{lm}</b> <span class="btn" on:click={()=>DelLuck(lm)}><img alt="close" src="close.jpeg" /></span> </li>
@@ -131,8 +165,7 @@ onMount(async () => {
 			</ul>
 			<div class="open">
 				<a href="https://github.com/egotom/LuckyMe" target="_blank">开放源代码: github.com/egotom/LuckyMe</a>
-			</div>
-			
+			</div>			
 		</div>
 		<div class="bod">
 			{#each s as lk}
@@ -197,6 +230,17 @@ onMount(async () => {
 		height: 400px;
 		margin:5% auto;
 		background-color: white;
+	}
+	.confirm{
+		padding: 30px;
+	}
+	.confirm p{
+		text-align: center;
+	}
+	.code{
+		color:red;
+		font-size: 40px;
+		line-height: 2em;
 	}
 	.modal{
 		border-radius: 5px;
