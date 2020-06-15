@@ -104,7 +104,7 @@ onMount(async () => {
 			<br/>
 			<button on:click={Pause}>停 止</button>
 			<div class="open">
-				<a href="https://github.com/egotom/LuckyMe" target="_blank">开放源代码: github.com/egotom/LuckyMe</a>
+				<a href="https://github.com/egotom/LuckyMe/tree/idiot" target="_blank">开放源代码: https://github.com/egotom/LuckyMe/tree/idiot</a>
 			</div>			
 		</div>
 		<div class="bod">
