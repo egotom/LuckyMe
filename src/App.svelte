@@ -68,6 +68,16 @@ function AddLuck(lkm){
 
 function doModal(v){
 	modal=!modal;
+	if(typeof v=="string"){
+		//console.log(v);
+		me=null;
+		for(let i in lst){
+			if(v==lst[i][0]){
+				me={"dpt":lst[i][2] ,"name":lst[i][3] ,"desc":lst[i][4] ,"ts":lst[i][5] ,"no":lst[i][0]};
+				break;
+			}
+		}
+	}
 }
 
 onMount(async () => {
@@ -107,6 +117,13 @@ onMount(async () => {
 			<button on:click={Start}>开 始</button>
 			<br/>
 			<button on:click={Pause}>停 止</button>
+			
+			<ul class="luckMe">
+				<p><b style="color:red">已中奖序列号：</b></p>
+				{#each luckMe as lm}
+					<li><b on:click={()=>doModal(lm)}>{lb}-{lm}</b></li>
+				{/each}
+			</ul>
 			<div class="open">
 				<a href="https://github.com/egotom/LuckyMe/tree/idiot" target="_blank">开放源代码: https://github.com/egotom/LuckyMe</a>
 			</div>			
@@ -191,5 +208,21 @@ onMount(async () => {
 		margin-top: 30px;
 		margin-right: 30px;
 		margin-bottom: 30;
+	}
+	.luckMe{
+		list-style: none;
+		border: 1px solid red;
+		padding: 10px;
+		margin: 0;
+	}
+	.luckMe li b{
+		color: rgb(255,0,0);
+		font-size: 20px;
+		font-weight: bold;
+		text-decoration: none;
+	}
+	.luckMe li b:hover{
+		text-decoration: underline;
+		cursor:pointer;
 	}
 </style>
