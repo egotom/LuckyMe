@@ -111,7 +111,7 @@ onMount(async () => {
 	</div>
 	{/if}
 	<div class="dash">
-		<div class="opt">
+		<div>
 			<span class="label">获奖人数：</span><input type="number" on:keyup={Init} bind:value={luckMax} id="luckMax" class="w70">
 			<br/>
 			<button on:click={Start}>开 始</button>
@@ -128,11 +128,14 @@ onMount(async () => {
 				<a href="https://github.com/egotom/LuckyMe/tree/idiot" target="_blank">开放源代码: https://github.com/egotom/LuckyMe</a>
 			</div>			
 		</div>		
-		<div class="bod">
+		<div>
+			<div class="bod">
 			{#each s as lk}
 				<div><Ticket tick={lk} addOne={AddLuck} cpt={lb}/> </div>
 			{/each}
+			</div>
 		</div>
+		
 	</div>
 </main>
 <style>
