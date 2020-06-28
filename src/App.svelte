@@ -31,6 +31,7 @@ function Pause(){
 
 function Start(){
 	s=[];
+	let si=[];
 	ts=window.setTimeout(Start,2);
 	for(let i=0 ; i<luckMax ;){
 		let n1="";
@@ -38,7 +39,7 @@ function Start(){
 			let number=Math.floor(Math.random()*10);
 			n1+=number.toString();
 		}
-		if(luckMe.indexOf(n1)>-1 || all.indexOf(n1)==-1)
+		if(luckMe.indexOf(n1)>-1 || all.indexOf(n1)==-1 || (si.length>0 && si.indexOf(n1)>-1))
 			continue;
 		let n2=null;
 		for(let d in lst){
@@ -50,6 +51,7 @@ function Start(){
 		if(n2==null)
 			continue;
 		s.push(n2);
+		si.push(n1);
 		i++;
 	}
 }
