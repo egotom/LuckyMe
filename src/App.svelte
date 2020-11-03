@@ -8,7 +8,7 @@ let lb="B", error="", dell="";
 let soltMax=1;
 let luckMax=5;
 let ts=null;
-const LM = writable(JSON.parse(localStorage.getItem("luckMe"))|| []);
+const LM = writable(JSON.parse(localStorage.getItem("luckMe"))||[]);
 const unsubscribe= LM.subscribe(value => {
 	luckMe = value;
 });
@@ -230,4 +230,5 @@ onMount(async () => {
 		text-decoration: underline;
 		cursor:pointer;
 	}
+	button:hover{cursor:pointer;}
 </style>

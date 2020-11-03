@@ -20,5 +20,5 @@
 	.tkt:hover{background-color: #cc0033;cursor:pointer;}
 	.gr:hover{background-color: #009900;cursor:pointer;}
 	.hd{display: grid;grid-template-columns: 5fr 2fr;}
-	.why{text-indent: 2em;line-height: 200%;}
+	.why{text-indent: 2em;line-height: 200%;  }
 </style>
