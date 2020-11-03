@@ -2,25 +2,23 @@
 import { onMount } from 'svelte';
 import { writable } from 'svelte/store';
 import Ticket from './component/ticket.svelte';
-let s=[], luckMe=[], lst, me=[],code=33333, all=[];
+let show=[], luckMe=[], lst, me=[],code=33333, all=[];
 let  modal=false, confirm=false;
 let lb="B", error="", dell="";
 let soltMax=1;
 let luckMax=5;
 let ts=null;
 const LM = writable(JSON.parse(localStorage.getItem("luckMe"))||[]);
-const unsubscribe= LM.subscribe(value => {
-	luckMe = value;
-});
+LM.subscribe(value => {luckMe = value;});
 
 function Init(){
-	s=[];
+	show=[];
 	for(let i=0;i<luckMax ;i++){
 		let col=[];
 		for(let j=0;j<soltMax;j++){
 			col.push(0);
 		}
-		s.push({"dpt":"","name":"","desc":"","ts":"","no":"","green":true});
+		show.push({"dpt":"","name":"","desc":"","ts":"","no":"","green":true});
 	}
 }
 
@@ -30,41 +28,42 @@ function Pause(){
 }
 
 function Start(){
-	s=[];
+	show=[];
 	let si=[];
-	ts=window.setTimeout(Start,2);
-	for(let i=0 ; i<luckMax ;){
-		let n1="";
+	ts=window.setTimeout(Start,20);
+	for(let i=0 ; i<luckMax;){
+		let n1="", nu=0
 		for(let j=0; j<soltMax; j++){
-			let number=Math.floor(Math.random()*10);
-			n1+=number.toString();
-		}
-		if(luckMe.indexOf(n1)>-1 || all.indexOf(n1)==-1 || (si.length>0 && si.indexOf(n1)>-1))
-			continue;
-		let n2=null;
+			let number=Math.floor(Math.random()*10)
+			n1+=number.toString()
+			nu=Number(n1).toString()
+		}		
+		if(luckMe.indexOf(nu)>-1 || all.indexOf(n1)==-1 || si.indexOf(n1)>-1)
+			continue
+		let n2=null
 		for(let d in lst){
 			if(lst[d][6]==n1){
 				n2={"dpt":lst[d][2] ,"name":lst[d][3] ,"desc":lst[d][4] ,"ts":lst[d][5] ,"no":lst[d][0],"green":false}
-				break;
+				break
 			}
 		}
 		if(n2==null)
-			continue;
-		s.push(n2);
-		si.push(n1);
-		i++;
+			continue
+		show.push(n2)		
+		si.push(n1)
+		i++
 	}
 }
 
 function AddLuck(lkm){	
-	for(let i in s){
-		if(s[i].no==lkm.no)
-			s[i].green=true;
+	for(let i in show){
+		if(show[i].no==lkm.no)
+			show[i].green=true
 	}
-	modal=!modal;
-	me=lkm;
-	luckMe=[lkm.no, ...luckMe];
-	LM.subscribe(localStorage.setItem("luckMe",JSON.stringify(luckMe)));
+	modal=!modal
+	me=lkm
+	luckMe=[lkm.no, ...luckMe]
+	localStorage.setItem("luckMe",JSON.stringify(luckMe))
 }
 
 
@@ -90,9 +89,7 @@ onMount(async () => {
 	lst=lty.lst;
 	Init();
 	//console.log(JSON.stringify(lst));
-	lty.lst.map(l=>{
-		all.push(l[6]);
-	})
+	lty.lst.map(l=>{all.push(l[6]);})
 	//console.log(JSON.stringify(all));
 });
 
@@ -132,7 +129,7 @@ onMount(async () => {
 		</div>		
 		<div>
 			<div class="bod">
-			{#each s as lk}
+			{#each show as lk}
 				<div><Ticket tick={lk} addOne={AddLuck} cpt={lb}/> </div>
 			{/each}
 			</div>
