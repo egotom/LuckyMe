@@ -23,11 +23,19 @@ function Init(){
 }
 
 function Pause(){
+	console.log('--------------***********----------------');
 	window.clearTimeout(ts);
 	ts=null;
 }
 
+
+
 function Start(){
+	if(all.length-luckMe.length-luckMax<0){
+		window.clearTimeout(ts);
+		ts=null;
+		alert("剩余奖券不足！");
+	}
 	show=[];
 	let si=[];
 	ts=window.setTimeout(Start,20);
@@ -53,6 +61,7 @@ function Start(){
 		si.push(n1)
 		i++
 	}
+	document.querySelector("#stoprun").focus();
 }
 
 function AddLuck(lkm){	
@@ -90,10 +99,25 @@ onMount(async () => {
 	Init();
 	//console.log(JSON.stringify(lst));
 	lty.lst.map(l=>{all.push(l[6]);})
-	//console.log(JSON.stringify(all));
 });
 
+let key;
+let keyCode;
+
+function handleKeydown(event) {
+	key = event.key;
+	keyCode = event.keyCode;
+	console.log(keyCode);
+	if(keyCode===13){
+		//window.clearTimeout(ts);
+		//ts=null;		
+		Pause();		
+	}
+}
+
 </script>
+
+<svelte:window on:keydown={handleKeydown}/>
 <main>
 	{#if modal}
 	<div class="backdrop">
@@ -115,7 +139,7 @@ onMount(async () => {
 			<br/>
 			<button on:click={Start}>开 始</button>
 			<br/>
-			<button on:click={Pause}>停 止</button>
+			<button on:click={Pause} id="stoprun">停 止</button>
 			
 			<ul class="luckMe">
 				<p><b style="color:red">已中奖序列号：</b></p>
