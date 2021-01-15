@@ -65,14 +65,9 @@ function AddLuck(lkm){
 function doModal(v){
 	modal=!modal;
 	if(typeof v=="string"){
-		//console.log(v);
 		me=null;
-		for(let i in lst){
-			if(v==lst[i][0]){
-				me={"dpt":lst[i][2] ,"name":lst[i][3] ,"desc":lst[i][4] ,"ts":lst[i][5] ,"no":lst[i][0]};
-				break;
-			}
-		}
+		let n2=lst.filter(it=>it[0]===v)[0]
+		me={"dpt":n2[1] ,"name":n2[2] ,"desc":n2[3] ,"ts":n2[4] ,"no":n2[0],"green":false}
 	}
 }
 
