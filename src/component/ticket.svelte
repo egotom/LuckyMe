@@ -1,10 +1,10 @@
 <script>
-	export let tick={"dpt":'',"name":'',"no":'',"desc":'',"ts":'',"green":true}, addOne=null, cpt="";
+	export let tick={"dpt":'',"name":'',"no":'',"desc":'',"ts":'',"green":true}, addOne=null;
 </script>
 <div class="tkt" class:gr={tick.green}  on:click={()=>addOne(tick)}>
 	<div class="hd">
 		<div class="to">{tick.dpt}-{tick.name}</div>
-		<div class="no">序列号：{cpt}-{tick.no}</div>
+		<div class="no">序列号：{tick.no}</div>
 	</div>
 	<div class="why">{tick.desc}</div>
 	<div class="hd">

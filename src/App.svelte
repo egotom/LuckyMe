@@ -2,7 +2,7 @@
 import { onMount } from 'svelte';
 import { writable } from 'svelte/store';
 import Ticket from './component/ticket.svelte';
-let show=[], luckMe=[], lst, me=[],code=33333, all=[];
+let show=[], luckMe=[], lst=[], serial=[], me=[], all=0;
 let  modal=false, confirm=false;
 let lb="B", error="", dell="";
 let soltMax=1;
@@ -14,24 +14,18 @@ LM.subscribe(value => {luckMe = value;});
 function Init(){
 	show=[];
 	for(let i=0;i<luckMax ;i++){
-		let col=[];
-		for(let j=0;j<soltMax;j++){
-			col.push(0);
-		}
 		show.push({"dpt":"","name":"","desc":"","ts":"","no":"","green":true});
 	}
 }
 
 function Pause(){
-	console.log('--------------***********----------------');
+	//console.log('--------------***********----------------');
 	window.clearTimeout(ts);
 	ts=null;
 }
 
-
-
 function Start(){
-	if(all.length-luckMe.length-luckMax<0){
+	if(all-luckMe.length-luckMax<0){
 		window.clearTimeout(ts);
 		ts=null;
 		alert("剩余奖券不足！");
@@ -40,24 +34,17 @@ function Start(){
 	let si=[];
 	ts=window.setTimeout(Start,20);
 	for(let i=0 ; i<luckMax;){
-		let n1="", nu=0
-		for(let j=0; j<soltMax; j++){
-			let number=Math.floor(Math.random()*10)
-			n1+=number.toString()
-			nu=Number(n1).toString()
-		}		
-		if(luckMe.indexOf(nu)>-1 || all.indexOf(n1)==-1 || si.indexOf(n1)>-1)
+		let n1=lb+'-'+Math.floor(Math.random()*soltMax);
+		
+		//if(luckMe.indexOf(n1)>-1 || lst.indexOf(n1)==-1 || si.indexOf(n1)>-1)
+		if(luckMe.indexOf(n1)>-1 || si.indexOf(n1)>-1 || serial.indexOf(n1)==-1)
 			continue
-		let n2=null
-		for(let d in lst){
-			if(lst[d][6]==n1){
-				n2={"dpt":lst[d][2] ,"name":lst[d][3] ,"desc":lst[d][4] ,"ts":lst[d][5] ,"no":lst[d][0],"green":false}
-				break
-			}
-		}
+		
+		let n2=lst.filter(it=>it[0]===n1)[0]
+		//console.log( JSON.stringify(n2) );
 		if(n2==null)
 			continue
-		show.push(n2)		
+		show.push({"dpt":n2[1] ,"name":n2[2] ,"desc":n2[3] ,"ts":n2[4] ,"no":n2[0],"green":false})		
 		si.push(n1)
 		i++
 	}
@@ -91,14 +78,16 @@ function doModal(v){
 }
 
 onMount(async () => {
-	const res = await fetch(`http://120.26.118.222:5000/rflyts/4`);
+	const res = await fetch(`http://120.26.118.222:5000/rflyts/6`);
 	let lty = await res.json();
-	soltMax=lty.sn;
-	lb=lty.cpt;
+	soltMax=lty.sn+1;
+	lb=lty.lst[0][0].split('-')[0];
 	lst=lty.lst;
+	all=lty.lst.length;
 	Init();
-	//console.log(JSON.stringify(lst));
-	lty.lst.map(l=>{all.push(l[6]);})
+	//console.log(JSON.stringify(lst.slice(0,30)));
+	//console.log(lb,all,typeof soltMax)
+	lty.lst.map(it=>serial.push(it[0]))
 });
 
 let key;
@@ -107,13 +96,14 @@ let keyCode;
 function handleKeydown(event) {
 	key = event.key;
 	keyCode = event.keyCode;
-	console.log(keyCode);
+	//console.log(keyCode);
 	if(keyCode===13){
 		//window.clearTimeout(ts);
 		//ts=null;		
 		Pause();		
 	}
 }
+
 
 </script>
 
@@ -125,7 +115,7 @@ function handleKeydown(event) {
 			<div class="modal" on:click={doModal}>
 				<div class="info">
 					<p class="who">{me.dpt} - {me.name}</p>
-					<p class="sel">{lb}-{me.no}</p>
+					<p class="sel">{me.no}</p>
 					<p class="why">{me.desc}</p>
 					<p class="when">{me.ts}</p>
 				</div>
@@ -137,14 +127,14 @@ function handleKeydown(event) {
 		<div>
 			<span class="label">获奖人数：</span><input type="number" on:keyup={Init} bind:value={luckMax} id="luckMax" class="w70">
 			<br/>
-			<button on:click={Start}>开 始</button>
+			<button on:click={Start} >开 始</button>
 			<br/>
 			<button on:click={Pause} id="stoprun">停 止</button>
 			
 			<ul class="luckMe">
 				<p><b style="color:red">已中奖序列号：</b></p>
 				{#each luckMe as lm}
-					<li><b on:click={()=>doModal(lm)}>{lb}-{lm}</b></li>
+					<li><b on:click={()=>doModal(lm)}>{lm}</b></li>
 				{/each}
 			</ul>
 			<div class="open">
@@ -154,7 +144,7 @@ function handleKeydown(event) {
 		<div>
 			<div class="bod">
 			{#each show as lk}
-				<div><Ticket tick={lk} addOne={AddLuck} cpt={lb}/> </div>
+				<div><Ticket tick={lk} addOne={AddLuck}/> </div>
 			{/each}
 			</div>
 		</div>

@@ -458,21 +458,19 @@ var app = (function () {
     	let t3;
     	let div1;
     	let t4;
+    	let t5_value = /*tick*/ ctx[0].no + "";
     	let t5;
     	let t6;
-    	let t7_value = /*tick*/ ctx[0].no + "";
+    	let div3;
+    	let t7_value = /*tick*/ ctx[0].desc + "";
     	let t7;
     	let t8;
-    	let div3;
-    	let t9_value = /*tick*/ ctx[0].desc + "";
-    	let t9;
-    	let t10;
     	let div6;
     	let div4;
-    	let t11;
+    	let t9;
     	let div5;
-    	let t12_value = /*tick*/ ctx[0].ts + "";
-    	let t12;
+    	let t10_value = /*tick*/ ctx[0].ts + "";
+    	let t10;
     	let dispose;
 
     	const block = {
@@ -486,34 +484,32 @@ var app = (function () {
     			t3 = space();
     			div1 = element("div");
     			t4 = text("序列号：");
-    			t5 = text(/*cpt*/ ctx[2]);
-    			t6 = text("-");
+    			t5 = text(t5_value);
+    			t6 = space();
+    			div3 = element("div");
     			t7 = text(t7_value);
     			t8 = space();
-    			div3 = element("div");
-    			t9 = text(t9_value);
-    			t10 = space();
     			div6 = element("div");
     			div4 = element("div");
-    			t11 = space();
+    			t9 = space();
     			div5 = element("div");
-    			t12 = text(t12_value);
+    			t10 = text(t10_value);
     			attr_dev(div0, "class", "to");
-    			add_location(div0, file, 5, 2, 212);
+    			add_location(div0, file, 5, 2, 204);
     			attr_dev(div1, "class", "no");
-    			add_location(div1, file, 6, 2, 260);
+    			add_location(div1, file, 6, 2, 252);
     			attr_dev(div2, "class", "hd svelte-1i8c8xz");
-    			add_location(div2, file, 4, 1, 192);
+    			add_location(div2, file, 4, 1, 184);
     			attr_dev(div3, "class", "why svelte-1i8c8xz");
-    			add_location(div3, file, 8, 1, 313);
-    			add_location(div4, file, 10, 2, 370);
+    			add_location(div3, file, 8, 1, 299);
+    			add_location(div4, file, 10, 2, 356);
     			attr_dev(div5, "class", "ts");
-    			add_location(div5, file, 11, 2, 385);
+    			add_location(div5, file, 11, 2, 371);
     			attr_dev(div6, "class", "hd svelte-1i8c8xz");
-    			add_location(div6, file, 9, 1, 350);
+    			add_location(div6, file, 9, 1, 336);
     			attr_dev(div7, "class", "tkt svelte-1i8c8xz");
     			toggle_class(div7, "gr", /*tick*/ ctx[0].green);
-    			add_location(div7, file, 3, 0, 121);
+    			add_location(div7, file, 3, 0, 113);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -529,27 +525,24 @@ var app = (function () {
     			append_dev(div2, div1);
     			append_dev(div1, t4);
     			append_dev(div1, t5);
-    			append_dev(div1, t6);
-    			append_dev(div1, t7);
-    			append_dev(div7, t8);
+    			append_dev(div7, t6);
     			append_dev(div7, div3);
-    			append_dev(div3, t9);
-    			append_dev(div7, t10);
+    			append_dev(div3, t7);
+    			append_dev(div7, t8);
     			append_dev(div7, div6);
     			append_dev(div6, div4);
-    			append_dev(div6, t11);
+    			append_dev(div6, t9);
     			append_dev(div6, div5);
-    			append_dev(div5, t12);
+    			append_dev(div5, t10);
     			if (remount) dispose();
-    			dispose = listen_dev(div7, "click", /*click_handler*/ ctx[3], false, false, false);
+    			dispose = listen_dev(div7, "click", /*click_handler*/ ctx[2], false, false, false);
     		},
     		p: function update(ctx, [dirty]) {
     			if (dirty & /*tick*/ 1 && t0_value !== (t0_value = /*tick*/ ctx[0].dpt + "")) set_data_dev(t0, t0_value);
     			if (dirty & /*tick*/ 1 && t2_value !== (t2_value = /*tick*/ ctx[0].name + "")) set_data_dev(t2, t2_value);
-    			if (dirty & /*cpt*/ 4) set_data_dev(t5, /*cpt*/ ctx[2]);
-    			if (dirty & /*tick*/ 1 && t7_value !== (t7_value = /*tick*/ ctx[0].no + "")) set_data_dev(t7, t7_value);
-    			if (dirty & /*tick*/ 1 && t9_value !== (t9_value = /*tick*/ ctx[0].desc + "")) set_data_dev(t9, t9_value);
-    			if (dirty & /*tick*/ 1 && t12_value !== (t12_value = /*tick*/ ctx[0].ts + "")) set_data_dev(t12, t12_value);
+    			if (dirty & /*tick*/ 1 && t5_value !== (t5_value = /*tick*/ ctx[0].no + "")) set_data_dev(t5, t5_value);
+    			if (dirty & /*tick*/ 1 && t7_value !== (t7_value = /*tick*/ ctx[0].desc + "")) set_data_dev(t7, t7_value);
+    			if (dirty & /*tick*/ 1 && t10_value !== (t10_value = /*tick*/ ctx[0].ts + "")) set_data_dev(t10, t10_value);
 
     			if (dirty & /*tick*/ 1) {
     				toggle_class(div7, "gr", /*tick*/ ctx[0].green);
@@ -583,10 +576,9 @@ var app = (function () {
     			"ts": "",
     			"green": true
     		} } = $$props,
-    		{ addOne = null } = $$props,
-    		{ cpt = "" } = $$props;
+    		{ addOne = null } = $$props;
 
-    	const writable_props = ["tick", "addOne", "cpt"];
+    	const writable_props = ["tick", "addOne"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Ticket> was created with unknown prop '${key}'`);
@@ -599,28 +591,26 @@ var app = (function () {
     	$$self.$set = $$props => {
     		if ("tick" in $$props) $$invalidate(0, tick = $$props.tick);
     		if ("addOne" in $$props) $$invalidate(1, addOne = $$props.addOne);
-    		if ("cpt" in $$props) $$invalidate(2, cpt = $$props.cpt);
     	};
 
-    	$$self.$capture_state = () => ({ tick, addOne, cpt });
+    	$$self.$capture_state = () => ({ tick, addOne });
 
     	$$self.$inject_state = $$props => {
     		if ("tick" in $$props) $$invalidate(0, tick = $$props.tick);
     		if ("addOne" in $$props) $$invalidate(1, addOne = $$props.addOne);
-    		if ("cpt" in $$props) $$invalidate(2, cpt = $$props.cpt);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [tick, addOne, cpt, click_handler];
+    	return [tick, addOne, click_handler];
     }
 
     class Ticket extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance, create_fragment, safe_not_equal, { tick: 0, addOne: 1, cpt: 2 });
+    		init(this, options, instance, create_fragment, safe_not_equal, { tick: 0, addOne: 1 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -645,19 +635,11 @@ var app = (function () {
     	set addOne(value) {
     		throw new Error("<Ticket>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
-
-    	get cpt() {
-    		throw new Error("<Ticket>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	set cpt(value) {
-    		throw new Error("<Ticket>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
     }
 
     /* src\App.svelte generated by Svelte v3.22.3 */
 
-    const { console: console_1, window: window_1 } = globals;
+    const { window: window_1 } = globals;
     const file$1 = "src\\App.svelte";
 
     function get_each_context(ctx, list, i) {
@@ -672,7 +654,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (122:1) {#if modal}
+    // (112:1) {#if modal}
     function create_if_block(ctx) {
     	let div3;
     	let div2;
@@ -686,18 +668,16 @@ var app = (function () {
     	let t2;
     	let t3;
     	let p1;
+    	let t4_value = /*me*/ ctx[2].no + "";
     	let t4;
     	let t5;
-    	let t6_value = /*me*/ ctx[2].no + "";
+    	let p2;
+    	let t6_value = /*me*/ ctx[2].desc + "";
     	let t6;
     	let t7;
-    	let p2;
-    	let t8_value = /*me*/ ctx[2].desc + "";
-    	let t8;
-    	let t9;
     	let p3;
-    	let t10_value = /*me*/ ctx[2].ts + "";
-    	let t10;
+    	let t8_value = /*me*/ ctx[2].ts + "";
+    	let t8;
     	let dispose;
 
     	const block = {
@@ -712,31 +692,29 @@ var app = (function () {
     			t2 = text(t2_value);
     			t3 = space();
     			p1 = element("p");
-    			t4 = text(/*lb*/ ctx[4]);
-    			t5 = text("-");
+    			t4 = text(t4_value);
+    			t5 = space();
+    			p2 = element("p");
     			t6 = text(t6_value);
     			t7 = space();
-    			p2 = element("p");
-    			t8 = text(t8_value);
-    			t9 = space();
     			p3 = element("p");
-    			t10 = text(t10_value);
+    			t8 = text(t8_value);
     			attr_dev(p0, "class", "who svelte-ykcqu3");
-    			add_location(p0, file$1, 126, 5, 2561);
+    			add_location(p0, file$1, 116, 5, 2544);
     			attr_dev(p1, "class", "sel svelte-ykcqu3");
-    			add_location(p1, file$1, 127, 5, 2606);
+    			add_location(p1, file$1, 117, 5, 2589);
     			attr_dev(p2, "class", "why svelte-ykcqu3");
-    			add_location(p2, file$1, 128, 5, 2643);
+    			add_location(p2, file$1, 118, 5, 2621);
     			attr_dev(p3, "class", "when svelte-ykcqu3");
-    			add_location(p3, file$1, 129, 5, 2677);
+    			add_location(p3, file$1, 119, 5, 2655);
     			attr_dev(div0, "class", "info svelte-ykcqu3");
-    			add_location(div0, file$1, 125, 4, 2537);
+    			add_location(div0, file$1, 115, 4, 2520);
     			attr_dev(div1, "class", "modal svelte-ykcqu3");
-    			add_location(div1, file$1, 124, 3, 2494);
+    			add_location(div1, file$1, 114, 3, 2477);
     			attr_dev(div2, "class", "back svelte-ykcqu3");
-    			add_location(div2, file$1, 123, 2, 2472);
+    			add_location(div2, file$1, 113, 2, 2455);
     			attr_dev(div3, "class", "backdrop svelte-ykcqu3");
-    			add_location(div3, file$1, 122, 1, 2447);
+    			add_location(div3, file$1, 112, 1, 2430);
     		},
     		m: function mount(target, anchor, remount) {
     			insert_dev(target, div3, anchor);
@@ -750,24 +728,21 @@ var app = (function () {
     			append_dev(div0, t3);
     			append_dev(div0, p1);
     			append_dev(p1, t4);
-    			append_dev(p1, t5);
-    			append_dev(p1, t6);
-    			append_dev(div0, t7);
+    			append_dev(div0, t5);
     			append_dev(div0, p2);
-    			append_dev(p2, t8);
-    			append_dev(div0, t9);
+    			append_dev(p2, t6);
+    			append_dev(div0, t7);
     			append_dev(div0, p3);
-    			append_dev(p3, t10);
+    			append_dev(p3, t8);
     			if (remount) dispose();
-    			dispose = listen_dev(div1, "click", /*doModal*/ ctx[10], false, false, false);
+    			dispose = listen_dev(div1, "click", /*doModal*/ ctx[9], false, false, false);
     		},
     		p: function update(ctx, dirty) {
     			if (dirty & /*me*/ 4 && t0_value !== (t0_value = /*me*/ ctx[2].dpt + "")) set_data_dev(t0, t0_value);
     			if (dirty & /*me*/ 4 && t2_value !== (t2_value = /*me*/ ctx[2].name + "")) set_data_dev(t2, t2_value);
-    			if (dirty & /*lb*/ 16) set_data_dev(t4, /*lb*/ ctx[4]);
-    			if (dirty & /*me*/ 4 && t6_value !== (t6_value = /*me*/ ctx[2].no + "")) set_data_dev(t6, t6_value);
-    			if (dirty & /*me*/ 4 && t8_value !== (t8_value = /*me*/ ctx[2].desc + "")) set_data_dev(t8, t8_value);
-    			if (dirty & /*me*/ 4 && t10_value !== (t10_value = /*me*/ ctx[2].ts + "")) set_data_dev(t10, t10_value);
+    			if (dirty & /*me*/ 4 && t4_value !== (t4_value = /*me*/ ctx[2].no + "")) set_data_dev(t4, t4_value);
+    			if (dirty & /*me*/ 4 && t6_value !== (t6_value = /*me*/ ctx[2].desc + "")) set_data_dev(t6, t6_value);
+    			if (dirty & /*me*/ 4 && t8_value !== (t8_value = /*me*/ ctx[2].ts + "")) set_data_dev(t8, t8_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div3);
@@ -779,21 +754,19 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(122:1) {#if modal}",
+    		source: "(112:1) {#if modal}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (146:4) {#each luckMe as lm}
+    // (136:4) {#each luckMe as lm}
     function create_each_block_1(ctx) {
     	let li;
     	let b;
-    	let t0;
-    	let t1;
-    	let t2_value = /*lm*/ ctx[28] + "";
-    	let t2;
+    	let t_value = /*lm*/ ctx[28] + "";
+    	let t;
     	let dispose;
 
     	function click_handler(...args) {
@@ -804,26 +777,21 @@ var app = (function () {
     		c: function create() {
     			li = element("li");
     			b = element("b");
-    			t0 = text(/*lb*/ ctx[4]);
-    			t1 = text("-");
-    			t2 = text(t2_value);
+    			t = text(t_value);
     			attr_dev(b, "class", "svelte-ykcqu3");
-    			add_location(b, file$1, 146, 9, 3115);
-    			add_location(li, file$1, 146, 5, 3111);
+    			add_location(b, file$1, 136, 9, 3094);
+    			add_location(li, file$1, 136, 5, 3090);
     		},
     		m: function mount(target, anchor, remount) {
     			insert_dev(target, li, anchor);
     			append_dev(li, b);
-    			append_dev(b, t0);
-    			append_dev(b, t1);
-    			append_dev(b, t2);
+    			append_dev(b, t);
     			if (remount) dispose();
     			dispose = listen_dev(b, "click", click_handler, false, false, false);
     		},
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
-    			if (dirty & /*lb*/ 16) set_data_dev(t0, /*lb*/ ctx[4]);
-    			if (dirty & /*luckMe*/ 2 && t2_value !== (t2_value = /*lm*/ ctx[28] + "")) set_data_dev(t2, t2_value);
+    			if (dirty & /*luckMe*/ 2 && t_value !== (t_value = /*lm*/ ctx[28] + "")) set_data_dev(t, t_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(li);
@@ -835,14 +803,14 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(146:4) {#each luckMe as lm}",
+    		source: "(136:4) {#each luckMe as lm}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (156:3) {#each show as lk}
+    // (146:3) {#each show as lk}
     function create_each_block(ctx) {
     	let div;
     	let t;
@@ -851,8 +819,7 @@ var app = (function () {
     	const ticket = new Ticket({
     			props: {
     				tick: /*lk*/ ctx[25],
-    				addOne: /*AddLuck*/ ctx[9],
-    				cpt: /*lb*/ ctx[4]
+    				addOne: /*AddLuck*/ ctx[8]
     			},
     			$$inline: true
     		});
@@ -862,7 +829,7 @@ var app = (function () {
     			div = element("div");
     			create_component(ticket.$$.fragment);
     			t = space();
-    			add_location(div, file$1, 156, 4, 3406);
+    			add_location(div, file$1, 146, 4, 3380);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -873,7 +840,6 @@ var app = (function () {
     		p: function update(ctx, dirty) {
     			const ticket_changes = {};
     			if (dirty & /*show*/ 1) ticket_changes.tick = /*lk*/ ctx[25];
-    			if (dirty & /*lb*/ 16) ticket_changes.cpt = /*lb*/ ctx[4];
     			ticket.$set(ticket_changes);
     		},
     		i: function intro(local) {
@@ -895,7 +861,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(156:3) {#each show as lk}",
+    		source: "(146:3) {#each show as lk}",
     		ctx
     	});
 
@@ -995,36 +961,36 @@ var app = (function () {
     			}
 
     			attr_dev(span, "class", "label svelte-ykcqu3");
-    			add_location(span, file$1, 137, 3, 2781);
+    			add_location(span, file$1, 127, 3, 2759);
     			attr_dev(input, "type", "number");
     			attr_dev(input, "id", "luckMax");
     			attr_dev(input, "class", "w70 svelte-ykcqu3");
-    			add_location(input, file$1, 137, 35, 2813);
-    			add_location(br0, file$1, 138, 3, 2900);
+    			add_location(input, file$1, 127, 35, 2791);
+    			add_location(br0, file$1, 128, 3, 2878);
     			attr_dev(button0, "class", "svelte-ykcqu3");
-    			add_location(button0, file$1, 139, 3, 2909);
-    			add_location(br1, file$1, 140, 3, 2950);
+    			add_location(button0, file$1, 129, 3, 2887);
+    			add_location(br1, file$1, 130, 3, 2929);
     			attr_dev(button1, "id", "stoprun");
     			attr_dev(button1, "class", "svelte-ykcqu3");
-    			add_location(button1, file$1, 141, 3, 2959);
+    			add_location(button1, file$1, 131, 3, 2938);
     			set_style(b, "color", "red");
     			attr_dev(b, "class", "svelte-ykcqu3");
-    			add_location(b, file$1, 144, 7, 3044);
-    			add_location(p, file$1, 144, 4, 3041);
+    			add_location(b, file$1, 134, 7, 3023);
+    			add_location(p, file$1, 134, 4, 3020);
     			attr_dev(ul, "class", "luckMe svelte-ykcqu3");
-    			add_location(ul, file$1, 143, 3, 3017);
+    			add_location(ul, file$1, 133, 3, 2996);
     			attr_dev(a, "href", "https://github.com/egotom/LuckyMe/tree/idiot");
     			attr_dev(a, "target", "_blank");
-    			add_location(a, file$1, 150, 4, 3211);
+    			add_location(a, file$1, 140, 4, 3185);
     			attr_dev(div0, "class", "open svelte-ykcqu3");
-    			add_location(div0, file$1, 149, 3, 3188);
-    			add_location(div1, file$1, 136, 2, 2772);
+    			add_location(div0, file$1, 139, 3, 3162);
+    			add_location(div1, file$1, 126, 2, 2750);
     			attr_dev(div2, "class", "bod svelte-ykcqu3");
-    			add_location(div2, file$1, 154, 3, 3362);
-    			add_location(div3, file$1, 153, 2, 3353);
+    			add_location(div2, file$1, 144, 3, 3336);
+    			add_location(div3, file$1, 143, 2, 3327);
     			attr_dev(div4, "class", "dash svelte-ykcqu3");
-    			add_location(div4, file$1, 135, 1, 2751);
-    			add_location(main, file$1, 120, 0, 2426);
+    			add_location(div4, file$1, 125, 1, 2729);
+    			add_location(main, file$1, 110, 0, 2409);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1037,7 +1003,7 @@ var app = (function () {
     			append_dev(div4, div1);
     			append_dev(div1, span);
     			append_dev(div1, input);
-    			set_input_value(input, /*luckMax*/ ctx[5]);
+    			set_input_value(input, /*luckMax*/ ctx[4]);
     			append_dev(div1, t2);
     			append_dev(div1, br0);
     			append_dev(div1, t3);
@@ -1071,11 +1037,11 @@ var app = (function () {
     			if (remount) run_all(dispose);
 
     			dispose = [
-    				listen_dev(window_1, "keydown", /*handleKeydown*/ ctx[11], false, false, false),
-    				listen_dev(input, "keyup", /*Init*/ ctx[6], false, false, false),
+    				listen_dev(window_1, "keydown", /*handleKeydown*/ ctx[10], false, false, false),
+    				listen_dev(input, "keyup", /*Init*/ ctx[5], false, false, false),
     				listen_dev(input, "input", /*input_input_handler*/ ctx[23]),
-    				listen_dev(button0, "click", /*Start*/ ctx[8], false, false, false),
-    				listen_dev(button1, "click", /*Pause*/ ctx[7], false, false, false)
+    				listen_dev(button0, "click", /*Start*/ ctx[7], false, false, false),
+    				listen_dev(button1, "click", /*Pause*/ ctx[6], false, false, false)
     			];
     		},
     		p: function update(ctx, [dirty]) {
@@ -1092,11 +1058,11 @@ var app = (function () {
     				if_block = null;
     			}
 
-    			if (dirty & /*luckMax*/ 32 && to_number(input.value) !== /*luckMax*/ ctx[5]) {
-    				set_input_value(input, /*luckMax*/ ctx[5]);
+    			if (dirty & /*luckMax*/ 16 && to_number(input.value) !== /*luckMax*/ ctx[4]) {
+    				set_input_value(input, /*luckMax*/ ctx[4]);
     			}
 
-    			if (dirty & /*doModal, luckMe, lb*/ 1042) {
+    			if (dirty & /*doModal, luckMe*/ 514) {
     				each_value_1 = /*luckMe*/ ctx[1];
     				validate_each_argument(each_value_1);
     				let i;
@@ -1120,7 +1086,7 @@ var app = (function () {
     				each_blocks_1.length = each_value_1.length;
     			}
 
-    			if (dirty & /*show, AddLuck, lb*/ 529) {
+    			if (dirty & /*show, AddLuck*/ 257) {
     				each_value = /*show*/ ctx[0];
     				validate_each_argument(each_value);
     				let i;
@@ -1187,7 +1153,7 @@ var app = (function () {
     }
 
     function instance$1($$self, $$props, $$invalidate) {
-    	let show = [], luckMe = [], lst, me = [], code = 33333, all = [];
+    	let show = [], luckMe = [], lst = [], serial = [], me = [], all = 0;
     	let modal = false, confirm = false;
     	let lb = "B", error = "", dell = "";
     	let soltMax = 1;
@@ -1203,7 +1169,6 @@ var app = (function () {
     		$$invalidate(0, show = []);
 
     		for (let i = 0; i < luckMax; i++) {
-
     			show.push({
     				"dpt": "",
     				"name": "",
@@ -1216,13 +1181,14 @@ var app = (function () {
     	}
 
     	function Pause() {
-    		console.log("--------------***********----------------");
+    		//console.log('--------------***********----------------');
     		window.clearTimeout(ts);
+
     		ts = null;
     	}
 
     	function Start() {
-    		if (all.length - luckMe.length - luckMax < 0) {
+    		if (all - luckMe.length - luckMax < 0) {
     			window.clearTimeout(ts);
     			ts = null;
     			alert("剩余奖券不足！");
@@ -1233,34 +1199,25 @@ var app = (function () {
     		ts = window.setTimeout(Start, 20);
 
     		for (let i = 0; i < luckMax; ) {
-    			let n1 = "", nu = 0;
+    			let n1 = lb + "-" + Math.floor(Math.random() * soltMax);
 
-    			for (let j = 0; j < soltMax; j++) {
-    				let number = Math.floor(Math.random() * 10);
-    				n1 += number.toString();
-    				nu = Number(n1).toString();
-    			}
+    			//if(luckMe.indexOf(n1)>-1 || lst.indexOf(n1)==-1 || si.indexOf(n1)>-1)
+    			if (luckMe.indexOf(n1) > -1 || si.indexOf(n1) > -1 || serial.indexOf(n1) == -1) continue;
 
-    			if (luckMe.indexOf(nu) > -1 || all.indexOf(n1) == -1 || si.indexOf(n1) > -1) continue;
-    			let n2 = null;
+    			let n2 = lst.filter(it => it[0] === n1)[0];
 
-    			for (let d in lst) {
-    				if (lst[d][6] == n1) {
-    					n2 = {
-    						"dpt": lst[d][2],
-    						"name": lst[d][3],
-    						"desc": lst[d][4],
-    						"ts": lst[d][5],
-    						"no": lst[d][0],
-    						"green": false
-    					};
-
-    					break;
-    				}
-    			}
-
+    			//console.log( JSON.stringify(n2) );
     			if (n2 == null) continue;
-    			show.push(n2);
+
+    			show.push({
+    				"dpt": n2[1],
+    				"name": n2[2],
+    				"desc": n2[3],
+    				"ts": n2[4],
+    				"no": n2[0],
+    				"green": false
+    			});
+
     			si.push(n1);
     			i++;
     		}
@@ -1303,17 +1260,17 @@ var app = (function () {
     	}
 
     	onMount(async () => {
-    		const res = await fetch(`http://120.26.118.222:5000/rflyts/4`);
+    		const res = await fetch(`http://120.26.118.222:5000/rflyts/6`);
     		let lty = await res.json();
-    		soltMax = lty.sn;
-    		$$invalidate(4, lb = lty.cpt);
+    		soltMax = lty.sn + 1;
+    		lb = lty.lst[0][0].split("-")[0];
     		lst = lty.lst;
+    		all = lty.lst.length;
     		Init();
 
-    		//console.log(JSON.stringify(lst));
-    		lty.lst.map(l => {
-    			all.push(l[6]);
-    		});
+    		//console.log(JSON.stringify(lst.slice(0,30)));
+    		//console.log(lb,all,typeof soltMax)
+    		lty.lst.map(it => serial.push(it[0]));
     	});
 
     	let key;
@@ -1322,8 +1279,8 @@ var app = (function () {
     	function handleKeydown(event) {
     		key = event.key;
     		keyCode = event.keyCode;
-    		console.log(keyCode);
 
+    		//console.log(keyCode);
     		if (keyCode === 13) {
     			//window.clearTimeout(ts);
     			//ts=null;		
@@ -1334,7 +1291,7 @@ var app = (function () {
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
-    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1.warn(`<App> was created with unknown prop '${key}'`);
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<App> was created with unknown prop '${key}'`);
     	});
 
     	let { $$slots = {}, $$scope } = $$props;
@@ -1342,7 +1299,7 @@ var app = (function () {
 
     	function input_input_handler() {
     		luckMax = to_number(this.value);
-    		$$invalidate(5, luckMax);
+    		$$invalidate(4, luckMax);
     	}
 
     	const click_handler = lm => doModal(lm);
@@ -1354,8 +1311,8 @@ var app = (function () {
     		show,
     		luckMe,
     		lst,
+    		serial,
     		me,
-    		code,
     		all,
     		modal,
     		confirm,
@@ -1380,16 +1337,16 @@ var app = (function () {
     		if ("show" in $$props) $$invalidate(0, show = $$props.show);
     		if ("luckMe" in $$props) $$invalidate(1, luckMe = $$props.luckMe);
     		if ("lst" in $$props) lst = $$props.lst;
+    		if ("serial" in $$props) serial = $$props.serial;
     		if ("me" in $$props) $$invalidate(2, me = $$props.me);
-    		if ("code" in $$props) code = $$props.code;
     		if ("all" in $$props) all = $$props.all;
     		if ("modal" in $$props) $$invalidate(3, modal = $$props.modal);
     		if ("confirm" in $$props) confirm = $$props.confirm;
-    		if ("lb" in $$props) $$invalidate(4, lb = $$props.lb);
+    		if ("lb" in $$props) lb = $$props.lb;
     		if ("error" in $$props) error = $$props.error;
     		if ("dell" in $$props) dell = $$props.dell;
     		if ("soltMax" in $$props) soltMax = $$props.soltMax;
-    		if ("luckMax" in $$props) $$invalidate(5, luckMax = $$props.luckMax);
+    		if ("luckMax" in $$props) $$invalidate(4, luckMax = $$props.luckMax);
     		if ("ts" in $$props) ts = $$props.ts;
     		if ("key" in $$props) key = $$props.key;
     		if ("keyCode" in $$props) keyCode = $$props.keyCode;
@@ -1404,7 +1361,6 @@ var app = (function () {
     		luckMe,
     		me,
     		modal,
-    		lb,
     		luckMax,
     		Init,
     		Pause,
@@ -1413,12 +1369,13 @@ var app = (function () {
     		doModal,
     		handleKeydown,
     		lst,
+    		all,
+    		lb,
     		soltMax,
     		ts,
     		key,
     		keyCode,
-    		code,
-    		all,
+    		serial,
     		confirm,
     		error,
     		dell,
