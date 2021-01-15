@@ -2,7 +2,7 @@
 import { onMount } from 'svelte';
 import { writable } from 'svelte/store';
 import Ticket from './component/ticket.svelte';
-let show=[], luckMe=[], lst=[], serial=[], me=[], all=0;
+let show=[], luckMe=[], lst=[],  me=[], all=0;
 let  modal=false, confirm=false;
 let lb="B", error="", dell="";
 let soltMax=1;
@@ -35,9 +35,8 @@ function Start(){
 	ts=window.setTimeout(Start,20);
 	for(let i=0 ; i<luckMax;){
 		let n1=lb+'-'+Math.floor(Math.random()*soltMax);
-		
 		//if(luckMe.indexOf(n1)>-1 || lst.indexOf(n1)==-1 || si.indexOf(n1)>-1)
-		if(luckMe.indexOf(n1)>-1 || si.indexOf(n1)>-1 || serial.indexOf(n1)==-1)
+		if(luckMe.indexOf(n1)>-1 || si.indexOf(n1)>-1)
 			continue
 		
 		let n2=lst.filter(it=>it[0]===n1)[0]
@@ -87,7 +86,7 @@ onMount(async () => {
 	Init();
 	//console.log(JSON.stringify(lst.slice(0,30)));
 	//console.log(lb,all,typeof soltMax)
-	lty.lst.map(it=>serial.push(it[0]))
+	//lty.lst.map(it=>serial.push(it[0]))
 });
 
 let key;
@@ -138,7 +137,7 @@ function handleKeydown(event) {
 				{/each}
 			</ul>
 			<div class="open">
-				<a href="https://github.com/egotom/LuckyMe/tree/idiot" target="_blank">开放源代码: https://github.com/egotom/LuckyMe</a>
+				<a href="https://github.com/egotom/LuckyMe/tree/dev" target="_blank">开放源代码: https://github.com/egotom/LuckyMe</a>
 			</div>			
 		</div>		
 		<div>

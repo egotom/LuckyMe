@@ -644,17 +644,17 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[25] = list[i];
+    	child_ctx[24] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[28] = list[i];
+    	child_ctx[27] = list[i];
     	return child_ctx;
     }
 
-    // (112:1) {#if modal}
+    // (111:1) {#if modal}
     function create_if_block(ctx) {
     	let div3;
     	let div2;
@@ -700,21 +700,21 @@ var app = (function () {
     			p3 = element("p");
     			t8 = text(t8_value);
     			attr_dev(p0, "class", "who svelte-ykcqu3");
-    			add_location(p0, file$1, 116, 5, 2544);
+    			add_location(p0, file$1, 115, 5, 2507);
     			attr_dev(p1, "class", "sel svelte-ykcqu3");
-    			add_location(p1, file$1, 117, 5, 2589);
+    			add_location(p1, file$1, 116, 5, 2552);
     			attr_dev(p2, "class", "why svelte-ykcqu3");
-    			add_location(p2, file$1, 118, 5, 2621);
+    			add_location(p2, file$1, 117, 5, 2584);
     			attr_dev(p3, "class", "when svelte-ykcqu3");
-    			add_location(p3, file$1, 119, 5, 2655);
+    			add_location(p3, file$1, 118, 5, 2618);
     			attr_dev(div0, "class", "info svelte-ykcqu3");
-    			add_location(div0, file$1, 115, 4, 2520);
+    			add_location(div0, file$1, 114, 4, 2483);
     			attr_dev(div1, "class", "modal svelte-ykcqu3");
-    			add_location(div1, file$1, 114, 3, 2477);
+    			add_location(div1, file$1, 113, 3, 2440);
     			attr_dev(div2, "class", "back svelte-ykcqu3");
-    			add_location(div2, file$1, 113, 2, 2455);
+    			add_location(div2, file$1, 112, 2, 2418);
     			attr_dev(div3, "class", "backdrop svelte-ykcqu3");
-    			add_location(div3, file$1, 112, 1, 2430);
+    			add_location(div3, file$1, 111, 1, 2393);
     		},
     		m: function mount(target, anchor, remount) {
     			insert_dev(target, div3, anchor);
@@ -754,23 +754,23 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(112:1) {#if modal}",
+    		source: "(111:1) {#if modal}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (136:4) {#each luckMe as lm}
+    // (135:4) {#each luckMe as lm}
     function create_each_block_1(ctx) {
     	let li;
     	let b;
-    	let t_value = /*lm*/ ctx[28] + "";
+    	let t_value = /*lm*/ ctx[27] + "";
     	let t;
     	let dispose;
 
     	function click_handler(...args) {
-    		return /*click_handler*/ ctx[24](/*lm*/ ctx[28], ...args);
+    		return /*click_handler*/ ctx[23](/*lm*/ ctx[27], ...args);
     	}
 
     	const block = {
@@ -779,8 +779,8 @@ var app = (function () {
     			b = element("b");
     			t = text(t_value);
     			attr_dev(b, "class", "svelte-ykcqu3");
-    			add_location(b, file$1, 136, 9, 3094);
-    			add_location(li, file$1, 136, 5, 3090);
+    			add_location(b, file$1, 135, 9, 3057);
+    			add_location(li, file$1, 135, 5, 3053);
     		},
     		m: function mount(target, anchor, remount) {
     			insert_dev(target, li, anchor);
@@ -791,7 +791,7 @@ var app = (function () {
     		},
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
-    			if (dirty & /*luckMe*/ 2 && t_value !== (t_value = /*lm*/ ctx[28] + "")) set_data_dev(t, t_value);
+    			if (dirty & /*luckMe*/ 2 && t_value !== (t_value = /*lm*/ ctx[27] + "")) set_data_dev(t, t_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(li);
@@ -803,14 +803,14 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(136:4) {#each luckMe as lm}",
+    		source: "(135:4) {#each luckMe as lm}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (146:3) {#each show as lk}
+    // (145:3) {#each show as lk}
     function create_each_block(ctx) {
     	let div;
     	let t;
@@ -818,7 +818,7 @@ var app = (function () {
 
     	const ticket = new Ticket({
     			props: {
-    				tick: /*lk*/ ctx[25],
+    				tick: /*lk*/ ctx[24],
     				addOne: /*AddLuck*/ ctx[8]
     			},
     			$$inline: true
@@ -829,7 +829,7 @@ var app = (function () {
     			div = element("div");
     			create_component(ticket.$$.fragment);
     			t = space();
-    			add_location(div, file$1, 146, 4, 3380);
+    			add_location(div, file$1, 145, 4, 3341);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -839,7 +839,7 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			const ticket_changes = {};
-    			if (dirty & /*show*/ 1) ticket_changes.tick = /*lk*/ ctx[25];
+    			if (dirty & /*show*/ 1) ticket_changes.tick = /*lk*/ ctx[24];
     			ticket.$set(ticket_changes);
     		},
     		i: function intro(local) {
@@ -861,7 +861,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(146:3) {#each show as lk}",
+    		source: "(145:3) {#each show as lk}",
     		ctx
     	});
 
@@ -961,36 +961,36 @@ var app = (function () {
     			}
 
     			attr_dev(span, "class", "label svelte-ykcqu3");
-    			add_location(span, file$1, 127, 3, 2759);
+    			add_location(span, file$1, 126, 3, 2722);
     			attr_dev(input, "type", "number");
     			attr_dev(input, "id", "luckMax");
     			attr_dev(input, "class", "w70 svelte-ykcqu3");
-    			add_location(input, file$1, 127, 35, 2791);
-    			add_location(br0, file$1, 128, 3, 2878);
+    			add_location(input, file$1, 126, 35, 2754);
+    			add_location(br0, file$1, 127, 3, 2841);
     			attr_dev(button0, "class", "svelte-ykcqu3");
-    			add_location(button0, file$1, 129, 3, 2887);
-    			add_location(br1, file$1, 130, 3, 2929);
+    			add_location(button0, file$1, 128, 3, 2850);
+    			add_location(br1, file$1, 129, 3, 2892);
     			attr_dev(button1, "id", "stoprun");
     			attr_dev(button1, "class", "svelte-ykcqu3");
-    			add_location(button1, file$1, 131, 3, 2938);
+    			add_location(button1, file$1, 130, 3, 2901);
     			set_style(b, "color", "red");
     			attr_dev(b, "class", "svelte-ykcqu3");
-    			add_location(b, file$1, 134, 7, 3023);
-    			add_location(p, file$1, 134, 4, 3020);
+    			add_location(b, file$1, 133, 7, 2986);
+    			add_location(p, file$1, 133, 4, 2983);
     			attr_dev(ul, "class", "luckMe svelte-ykcqu3");
-    			add_location(ul, file$1, 133, 3, 2996);
-    			attr_dev(a, "href", "https://github.com/egotom/LuckyMe/tree/idiot");
+    			add_location(ul, file$1, 132, 3, 2959);
+    			attr_dev(a, "href", "https://github.com/egotom/LuckyMe/tree/dev");
     			attr_dev(a, "target", "_blank");
-    			add_location(a, file$1, 140, 4, 3185);
+    			add_location(a, file$1, 139, 4, 3148);
     			attr_dev(div0, "class", "open svelte-ykcqu3");
-    			add_location(div0, file$1, 139, 3, 3162);
-    			add_location(div1, file$1, 126, 2, 2750);
+    			add_location(div0, file$1, 138, 3, 3125);
+    			add_location(div1, file$1, 125, 2, 2713);
     			attr_dev(div2, "class", "bod svelte-ykcqu3");
-    			add_location(div2, file$1, 144, 3, 3336);
-    			add_location(div3, file$1, 143, 2, 3327);
+    			add_location(div2, file$1, 143, 3, 3297);
+    			add_location(div3, file$1, 142, 2, 3288);
     			attr_dev(div4, "class", "dash svelte-ykcqu3");
-    			add_location(div4, file$1, 125, 1, 2729);
-    			add_location(main, file$1, 110, 0, 2409);
+    			add_location(div4, file$1, 124, 1, 2692);
+    			add_location(main, file$1, 109, 0, 2372);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1039,7 +1039,7 @@ var app = (function () {
     			dispose = [
     				listen_dev(window_1, "keydown", /*handleKeydown*/ ctx[10], false, false, false),
     				listen_dev(input, "keyup", /*Init*/ ctx[5], false, false, false),
-    				listen_dev(input, "input", /*input_input_handler*/ ctx[23]),
+    				listen_dev(input, "input", /*input_input_handler*/ ctx[22]),
     				listen_dev(button0, "click", /*Start*/ ctx[7], false, false, false),
     				listen_dev(button1, "click", /*Pause*/ ctx[6], false, false, false)
     			];
@@ -1153,7 +1153,7 @@ var app = (function () {
     }
 
     function instance$1($$self, $$props, $$invalidate) {
-    	let show = [], luckMe = [], lst = [], serial = [], me = [], all = 0;
+    	let show = [], luckMe = [], lst = [], me = [], all = 0;
     	let modal = false, confirm = false;
     	let lb = "B", error = "", dell = "";
     	let soltMax = 1;
@@ -1202,7 +1202,7 @@ var app = (function () {
     			let n1 = lb + "-" + Math.floor(Math.random() * soltMax);
 
     			//if(luckMe.indexOf(n1)>-1 || lst.indexOf(n1)==-1 || si.indexOf(n1)>-1)
-    			if (luckMe.indexOf(n1) > -1 || si.indexOf(n1) > -1 || serial.indexOf(n1) == -1) continue;
+    			if (luckMe.indexOf(n1) > -1 || si.indexOf(n1) > -1) continue;
 
     			let n2 = lst.filter(it => it[0] === n1)[0];
 
@@ -1267,11 +1267,9 @@ var app = (function () {
     		lst = lty.lst;
     		all = lty.lst.length;
     		Init();
-
-    		//console.log(JSON.stringify(lst.slice(0,30)));
-    		//console.log(lb,all,typeof soltMax)
-    		lty.lst.map(it => serial.push(it[0]));
-    	});
+    	}); //console.log(JSON.stringify(lst.slice(0,30)));
+    	//console.log(lb,all,typeof soltMax)
+    	//lty.lst.map(it=>serial.push(it[0]))
 
     	let key;
     	let keyCode;
@@ -1311,7 +1309,6 @@ var app = (function () {
     		show,
     		luckMe,
     		lst,
-    		serial,
     		me,
     		all,
     		modal,
@@ -1337,7 +1334,6 @@ var app = (function () {
     		if ("show" in $$props) $$invalidate(0, show = $$props.show);
     		if ("luckMe" in $$props) $$invalidate(1, luckMe = $$props.luckMe);
     		if ("lst" in $$props) lst = $$props.lst;
-    		if ("serial" in $$props) serial = $$props.serial;
     		if ("me" in $$props) $$invalidate(2, me = $$props.me);
     		if ("all" in $$props) all = $$props.all;
     		if ("modal" in $$props) $$invalidate(3, modal = $$props.modal);
@@ -1375,7 +1371,6 @@ var app = (function () {
     		ts,
     		key,
     		keyCode,
-    		serial,
     		confirm,
     		error,
     		dell,
